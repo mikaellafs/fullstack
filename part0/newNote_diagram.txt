@@ -17,7 +17,7 @@ the js code being executed by the
 browser requires json data
 end note
 
-browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
 server-->browser: data.json
 
 note over browser
