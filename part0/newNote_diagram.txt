@@ -20,7 +20,7 @@ browser requires json data
 end note
 
 browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
-server-->browser: data.json
+server-->browser: notes as JSON data
 
 note over browser
 browser executes the event handler and display the notes
