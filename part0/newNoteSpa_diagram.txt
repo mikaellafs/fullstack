@@ -1,0 +1,6 @@
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+server-->browser: status code 201
+
+note over server
+no redirect is required
+end note
