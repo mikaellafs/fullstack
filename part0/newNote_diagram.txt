@@ -10,7 +10,7 @@ end note
 browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
 server-->browser: HTML code
 browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
-server-->browser: HTML main.css
+server-->browser: main.css
 
 note over browser
 the js code being executed by the 
@@ -18,7 +18,7 @@ browser requires json data
 end note
 
 browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
-server-->browser: HTML data.json
+server-->browser: data.json
 
 note over browser
 browser starts executing js-code
