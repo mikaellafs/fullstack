@@ -21,6 +21,5 @@ browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
 server-->browser: data.json
 
 note over browser
-browser starts executing js-code
-that requests JSON data from server 
+browser executes the event handler and display the notes
 end note
