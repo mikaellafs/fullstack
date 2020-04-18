@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 
-const Head = (n) => {
+const Head = (p) => {
   return(
     <div>
-      <h1>{n.course}</h1>
+      <h1>{p.course.name}</h1>
     </div>
   )
 }
@@ -14,7 +14,7 @@ const Part = (p) => {
   return(
     <div>
       <p>
-        {p.part} {p.exercise}
+        {p.part.name} {p.part.exercises}
       </p>
     </div>
   )
@@ -23,17 +23,17 @@ const Part = (p) => {
 const Content = (p) => {
   return(
     <>
-      <Part part = {p.part1} exercise = {p.exercises1} />
-      <Part part = {p.part2} exercise = {p.exercises2} />
-      <Part part = {p.part3} exercise = {p.exercises3} />
+      <Part part = {p.parts[0]} />
+      <Part part = {p.parts[1]} />
+      <Part part = {p.parts[2]} />
     </>
   )
 }
 
-const Total = (ex) =>{
+const Total = (p) =>{
   return(
     <div>
-      <p>Number of exercises {ex.exercises1 + ex.exercises2 + ex.exercises3}</p>
+      <p>Number of exercises {p.parts[0].exercises + p.parts[1].exercises + p.parts[2].exercises}</p>
     </div>
   )
 }
@@ -41,19 +41,28 @@ const Total = (ex) =>{
 
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  const course = {
+    name:'Half Stack application development',
+
+    parts : [{
+      name : 'Fundamentals of React',
+      exercises : 10
+    },
+    {
+      name : 'Using props to pass data',
+      exercises : 7
+    },
+    {
+      name : 'State of a component',
+      exercises : 14
+    }]
+  }
 
   return (
     <>
       <Head course = {course} />
-      <Content part1 = {part1} part2 = {part2} part3 = {part3} exercises1={exercises1} exercises2={exercises2} exercises3={exercises3} />
-      <Total exercises1={exercises1} exercises2={exercises2} exercises3={exercises3}/>
+      <Content parts = {course.parts}/>
+      <Total parts = {course.parts}/>
     </>
   )
 }
