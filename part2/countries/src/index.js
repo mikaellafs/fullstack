@@ -45,13 +45,7 @@ const Countries = (p) =>{
     return(
       <div>
           {p.countries.map(c => {return(<div><Display key = {c.name} text = {c.name} /> 
-          <ShowButton handleShowButton = {() => {
-            const newShowButton = Array(p.showButtons.length).fill(false)
-            newShowButton[p.all.findIndex(p => p.name === c.name? true : false)] = true
-        
-            p.setShowButton(newShowButton)
-          }
-            } /></div>)})}
+          <ShowButton handleShowButton = {() => p.setShownCountry(c)} /></div>)})}
       </div>
     )
   }else if(p.countries.length === 1){
@@ -84,7 +78,7 @@ const Countries = (p) =>{
 const App = () => {
   const [countries, setCountries] = useState([])
   const [ newInput, setNewInput ] = useState('')
-  const [showButtons, setShowButton] = useState(Array(countries.length).fill(false))
+  const [shownCountry, setShownCountry] = useState(undefined)
   const [weather, setWeather] = useState({
     temperature : undefined,
     wind_speed : undefined,
@@ -119,22 +113,17 @@ const App = () => {
 
   const setCountry = (event) =>{
     setNewInput(event.target.value)
-
-    setShowButton(Array(countries.length).fill(false))
-
+    setShownCountry(undefined)
   } 
 
-  let countrySelected = showButtons.findIndex(selected => selected)
-
-  const countryToShow =  countrySelected>=0 ? [countries[countrySelected]] : 
+  const countryToShow = shownCountry != undefined? [shownCountry] :
   newInput === ''? [] :
   countries.filter( country => country.name.toLowerCase().includes(newInput.toLowerCase()))
 
   return(
     <div>
       <Filter filter = {newInput} changeFilter = {setCountry}/>
-      <Countries countries = {countryToShow} setShowButton = {setShowButton} showButtons = {showButtons} all = {countries}
-      weather ={weather}/>
+      <Countries countries = {countryToShow} weather ={weather} setShownCountry = {setShownCountry}/>
     </div>
   )
 }
