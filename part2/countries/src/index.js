@@ -102,22 +102,20 @@ const App = () => {
     access_key: process.env.REACT_APP_WEATHER_KEY,
     query: countries.length >0? countries[0].capital : "New York"
   }
-  useEffect(() => {
-    axios
-      .get('https://api.weatherstack.com/current', {params})
-      .then(response => {
-        console.log(response.data)
-        const data = response.data
-        const newWeather = {
-          temperature : data.current.temperature,
-          wind_speed : data.current.wind_speed,
-          wind_direction : data.current.wind_dir,
-          icon : data.current.weather_icons
-        }
+  axios
+    .get('https://api.weatherstack.com/current', {params})
+    .then(response => {
+      console.log(response.data)
+      const data = response.data
+      const newWeather = {
+        temperature : data.current.temperature,
+        wind_speed : data.current.wind_speed,
+        wind_direction : data.current.wind_dir,
+        icon : data.current.weather_icons
+      }
 
-        setWeather(newWeather)
-      })
-  }, [])
+      setWeather(newWeather)
+    })
 
   const setCountry = (event) =>{
     setNewInput(event.target.value)
