@@ -92,12 +92,17 @@ const App = () => {
       }
       
       personService.create(person)
-      .then(responseData => setPersons(persons.concat(responseData)))
+      .then(responseData => {
+        setPersons(persons.concat(responseData))
 
-      setNotification({message: `Added ${person.name}`, style :'added'})
-      setTimeout(() => {
+        setNotification({message: `Added ${person.name}`, style :'added'})
+        setTimeout(() => {
         setNotification(null)
-      }, 5000)
+        }, 5000)
+      }).catch(error =>{
+        console.log(error.response.data)
+      })
+
     }
     setNewName('')
     setNewNumber('')
