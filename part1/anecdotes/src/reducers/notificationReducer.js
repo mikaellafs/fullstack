@@ -1,3 +1,5 @@
+let lastIdTimeOut
+
 export const removeNotification = () => {
 	return ({
 		type: 'REMOVE'
@@ -11,7 +13,8 @@ export const setNotification = (message, sec) => {
 			message: message
 		})
 
-		setTimeout(() =>{
+		clearTimeout(lastIdTimeOut)
+		lastIdTimeOut = setTimeout(() =>{
 			dispatch(removeNotification())
 		}, sec*1000)
 	}
