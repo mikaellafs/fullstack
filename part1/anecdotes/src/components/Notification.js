@@ -1,20 +1,18 @@
-import React from 'react'
-import { useSelector} from 'react-redux'
+import React from "react"
 
-const Notification = () => {
-  const notification = useSelector(store => store.notification)
-  if(notification === null) return null
+let lastId
 
-  const style = {
-    border: 'solid',
-    padding: 10,
-    borderWidth: 1
-  }
-  return (
-    <div style={style}>
-      {notification}
-    </div>
-  )
+const Notification = ({ message, setNotification }) => {
+	if (message === '') return null
+
+	clearTimeout(lastId)
+	lastId = setTimeout(() => setNotification(''), 10000)
+
+	return (
+		<div>
+			{message}
+		</div>
+	)
 }
 
 export default Notification
